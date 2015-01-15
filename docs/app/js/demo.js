@@ -47,6 +47,8 @@ function($mdUtil) {
         .concat(self.files.js || [])
         .concat(self.files.css || [])
         .concat(self.files.html || []);
+
+      self.demoDescription = file.fileType === 'md' ? file : '';
     };
 
     function convertName(name) {
@@ -81,4 +83,10 @@ function($mdUtil) {
       element.remove();
     };
   }
+}])
+
+.filter('toHtml', ['$sce', function($sce) {
+  return function(str) {
+    return $sce.trustAsHtml(str);
+  };
 }]);
